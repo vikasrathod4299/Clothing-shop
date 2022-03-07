@@ -1,0 +1,52 @@
+POST http://localhost:3000/api/auth/register
+Content-Type: application/json
+
+
+{
+    "username":"suhag",
+    "email":"suhag@gmail.com",
+    "password":"1234"
+}
+
+### LOGIN
+
+POST http://localhost:3000/api/auth/login
+Content-Type: application/json
+
+
+{
+    "username":"vikasrathod",
+    "password":"1234"
+}
+
+
+### UPDATE
+
+PUT http://localhost:3000/api/users/6225acbbbdb2808d6aac1656
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyMjVhY2JiYmRiMjgwOGQ2YWFjMTY1NiIsImlzQWRtaW4iOmZhbHNlLCJpYXQiOjE2NDY2MzY4ODksImV4cCI6MTY0NjYzNjk0OX0.KMpGabECrcO28ifmP4osvlkdLPEwfnuyiHDDrSdylGo
+Content-Type: application/json
+
+
+{
+    "isAdmin":true
+}
+
+
+
+### DELETE USER
+
+DELETE http://localhost:3000/api/users/6225acf5bdb2808d6aac165c
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyMjVhY2Y1YmRiMjgwOGQ2YWFjMTY1YyIsImlzQWRtaW4iOmZhbHNlLCJpYXQiOjE2NDY2MzY0MzksImV4cCI6MTY0NjYzNjQ5OX0.jtNPEZ4ebz7l5y6egXogCWfbVPATyR8-PObtisPaBt8
+
+
+
+### GET USER (ADMIN)
+GET http://localhost:3000/api/users/find/6225adbcbdb2808d6aac1666
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyMjVhZDFlYmRiMjgwOGQ2YWFjMTY1ZSIsImlzQWRtaW4iOmZhbHNlLCJpYXQiOjE2NDY2MzcwNTEsImV4cCI6MTY0NjcyMzQ1MX0._qvErXfagorO7m45IPrpW5tWbn7OBiOyKs2QSKk2pog
+
+
+
+### GET ALL USER (ADMIN)
+
+GET http://localhost:3000/api/users/
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyMjVhY2JiYmRiMjgwOGQ2YWFjMTY1NiIsImlzQWRtaW4iOnRydWUsImlhdCI6MTY0NjYzNzI0NiwiZXhwIjoxNjQ2NzIzNjQ2fQ.dMV9X4JCdrt57Din9hXK68p4S1qX0yK9ljxosItPzBM
