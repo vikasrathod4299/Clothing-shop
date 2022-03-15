@@ -42,7 +42,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyMjVhY2Y1Y
 
 ### GET USER (ADMIN)
 GET http://localhost:3000/api/users/find/6225adbcbdb2808d6aac1666
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyMjVhZDFlYmRiMjgwOGQ2YWFjMTY1ZSIsImlzQWRtaW4iOmZhbHNlLCJpYXQiOjE2NDY2MzcwNTEsImV4cCI6MTY0NjcyMzQ1MX0._qvErXfagorO7m45IPrpW5tWbn7OBiOyKs2QSKk2pog
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyMjVhY2JiYmRiMjgwOGQ2YWFjMTY1NiIsImlzQWRtaW4iOnRydWUsImlhdCI6MTY0NjYzNzI0NiwiZXhwIjoxNjQ2NzIzNjQ2fQ.dMV9X4JCdrt57Din9hXK68p4S1qX0yK9ljxosItPzBM
 
 
 
@@ -56,3 +56,36 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyMjVhY2JiY
 
 GET http://localhost:3000/api/users/stats
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyMjVhY2JiYmRiMjgwOGQ2YWFjMTY1NiIsImlzQWRtaW4iOnRydWUsImlhdCI6MTY0NjYzNzI0NiwiZXhwIjoxNjQ2NzIzNjQ2fQ.dMV9X4JCdrt57Din9hXK68p4S1qX0yK9ljxosItPzBM
+
+
+
+### ADD PRODUCT(ADMIN)
+
+POST http://localhost:3000/api/products/
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyMjVhY2JiYmRiMjgwOGQ2YWFjMTY1NiIsImlzQWRtaW4iOnRydWUsImlhdCI6MTY0NjYzNzI0NiwiZXhwIjoxNjQ2NzIzNjQ2fQ.dMV9X4JCdrt57Din9hXK68p4S1qX0yK9ljxosItPzBM
+Content-Type: application/json
+
+
+{
+        "title": "Nike shirt",
+        "desc": "test",
+        "img":"test",
+        "categories":["shirt","men","nike"],
+        "size":"m",
+        "color":"black",
+        "price":500
+}
+
+
+
+### UPDATE PRODUCT (ADMIN)
+
+PUT http://localhost:3000/api/products/6226f1ae098f73f8fe0d479f
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyMjVhY2JiYmRiMjgwOGQ2YWFjMTY1NiIsImlzQWRtaW4iOnRydWUsImlhdCI6MTY0NjYzNzI0NiwiZXhwIjoxNjQ2NzIzNjQ2fQ.dMV9X4JCdrt57Din9hXK68p4S1qX0yK9ljxosItPzBM
+Content-Type: application/json
+
+
+
+{
+    "title":"Puma Shirt"
+}

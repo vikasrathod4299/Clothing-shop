@@ -1,7 +1,7 @@
 const mongoos = require('mongoose')
 
 const ProductSchema= new mongoos.Schema({
-    DataTransferItemList: {type :String, required:true, unique:true},
+    title: {type :String, required:true, unique:true},
     desc:{type : String, required:true},
     img:{type: String, required:true},
     categories:{type:Array},

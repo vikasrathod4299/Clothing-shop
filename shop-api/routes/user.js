@@ -1,6 +1,5 @@
 const router = require('express').Router()
 const bcrypt = require('bcrypt')
-const { json } = require('body-parser')
 const User = require('../models/User')
 const {verfyToken,verifyTokenAuthentication, verifyTokenAdminAuth} = require("./verifyToken")
 
@@ -32,9 +31,7 @@ router.put("/:id",verifyTokenAuthentication, async(req,res)=>{
 //DELETE USER
 router.delete("/:id",verifyTokenAuthentication, async(req,res)=>{
     try{
-        
         await User.findByIdAndDelete(req.params.id);
-
         res.status(200).json("User has been delete")
     }catch(err)
     {
