@@ -5,31 +5,30 @@ const Container = styled.div`
 
 `
 const Left = styled.div`
-flex: 1;
-display: flex;
-flex-direction: column;
-padding: 20px;
-    
-`
-const Logo = styled.h1`
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+`;
+const Logo = styled.h1` 
 `
 const Desc = styled.p`
-    margin: 20px 0px;
-`
+  margin: 20px 0px;
+`;
 const SocialContainer = styled.div`
     display:flex;
 `
 const SocialIcon = styled.div`
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    color: white;
-    background-color: #${(props) => props.color};
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-right: 20px;
-`
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  color: white;
+  background-color: #${(props) => props.color};
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 20px;
+`;
 const Center = styled.div`
     flex:1;
     padding:20px;
@@ -51,7 +50,7 @@ const List = styled.ul`
 
 const ListItem = styled.li`
     width:50%;
-    margin-bottom:10px;
+        margin-bottom:10px;
 `
 
 
@@ -61,16 +60,19 @@ const Right = styled.div`
 
 `
 const ContactItem = styled.div`
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+`;
 
-`
 const Payment = styled.img`
-
-`
+    width: 50%;
+`;
 const Footer = () => {
   return (
         <Container>
             <Left>
-                <Logo>LAMA.</Logo>
+                <Logo>META.</Logo>
                 <Desc>
                 There are many variations of passages of Lorem Ipsum available, but
                 the majority have suffered alteration in some form, by injected
@@ -110,9 +112,9 @@ const Footer = () => {
 
             <Right>
                 <Title>Contact</Title>
-                <ContactItem><Room/>10, Sabarkunj SO., Motipura, Himmatnagar</ContactItem>
-                <ContactItem><Phone/>+91 94264 66606</ContactItem>
-                <ContactItem><MailOutlined/>vikas.rv4299@gmail.com </ContactItem>
+                <ContactItem><Room style={{marginRight:"10px"}} />10, Sabarkunj SO., Motipura, Himmatnagar</ContactItem>
+                <ContactItem><Phone style={{marginRight:"10px"}} />+91 94264 66606</ContactItem>
+                <ContactItem><MailOutlined style={{marginRight:"10px"}} />vikas.rv4299@gmail.com </ContactItem>
                 <Payment src="https://i.ibb.co/Qfvn4z6/payment.png"/>
             </Right>
         </Container>
