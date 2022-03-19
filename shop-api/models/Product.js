@@ -5,9 +5,10 @@ const ProductSchema= new mongoos.Schema({
     desc:{type : String, required:true},
     img:{type: String, required:true},
     categories:{type:Array},
-    size:{type:String, required:true},
-    color:{type:String, required:true},
-    price:{type:Number, required:true}
+    size:{type:Array},
+    color:{type:Array},
+    price:{type:Number, required:true},
+    inStock:{type :Boolean, default:true}
 
 },{timestamps:true})  
 

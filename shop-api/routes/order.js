@@ -69,12 +69,14 @@ router.get("/", verifyTokenAdminAuth ,async(req,res)=>{
 
 //GET MONTHELY INCOME
 
-router.get("/income",verifyTokenAdminAuth,(req,res)=>{
-    const date= new Date();
-    const lastMonth = new Date(date.setMonth(date.getMonth()-1))
-    const previousMonth = new Date(new Date.setMonth(lastMonth.getMonth()-1))
-
-    const income = await Order.aggregate([
+router.get("/income", verifyTokenAndAdmin, async (req, res) => {
+    const productId = req.query.pid;
+    const date = new Date();
+    const lastMonth = new Date(date.setMonth(date.getMonth() - 1));
+    const previousMonth = new Date(new Date().setMonth(lastMonth.getMonth() - 1));
+  
+    try {
+      const income = await Order.aggregate([
         {
           $match: {
             createdAt: { $gte: previousMonth },
@@ -97,11 +99,9 @@ router.get("/income",verifyTokenAdminAuth,(req,res)=>{
         },
       ]);
       res.status(200).json(income);
-
-    }catch(err){
-    
+    } catch (err) {
+      res.status(500).json(err);
     }
-
-})
+  });
 
 module.exports = router;

@@ -20,7 +20,7 @@ Content-Type: application/json
 }
 
 
-### UPDATE
+### UPDATE USER
 
 PUT http://localhost:3000/api/users/6225acbbbdb2808d6aac1656
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyMjVhY2JiYmRiMjgwOGQ2YWFjMTY1NiIsImlzQWRtaW4iOmZhbHNlLCJpYXQiOjE2NDY2MzY4ODksImV4cCI6MTY0NjYzNjk0OX0.KMpGabECrcO28ifmP4osvlkdLPEwfnuyiHDDrSdylGo
@@ -40,7 +40,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyMjVhY2Y1Y
 
 
 
-### GET USER (ADMIN)
+### GET USER BY ID(ADMIN)
 GET http://localhost:3000/api/users/find/6225adbcbdb2808d6aac1666
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyMjVhY2JiYmRiMjgwOGQ2YWFjMTY1NiIsImlzQWRtaW4iOnRydWUsImlhdCI6MTY0NjYzNzI0NiwiZXhwIjoxNjQ2NzIzNjQ2fQ.dMV9X4JCdrt57Din9hXK68p4S1qX0yK9ljxosItPzBM
 
@@ -62,18 +62,18 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyMjVhY2JiY
 ### ADD PRODUCT(ADMIN)
 
 POST http://localhost:3000/api/products/
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyMjVhY2JiYmRiMjgwOGQ2YWFjMTY1NiIsImlzQWRtaW4iOnRydWUsImlhdCI6MTY0NjYzNzI0NiwiZXhwIjoxNjQ2NzIzNjQ2fQ.dMV9X4JCdrt57Din9hXK68p4S1qX0yK9ljxosItPzBM
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyMjVhY2JiYmRiMjgwOGQ2YWFjMTY1NiIsImlzQWRtaW4iOnRydWUsImlhdCI6MTY0NzU0NDk3MiwiZXhwIjoxNjQ3NjMxMzcyfQ.C8fgKkeFeCMHQWvVxXVQ2YmIPN34NPgrcTDZJ9F5NUw
 Content-Type: application/json
 
 
 {
-        "title": "Nike shirt",
-        "desc": "test",
-        "img":"test",
-        "categories":["shirt","men","nike"],
-        "size":"m",
-        "color":"black",
-        "price":500
+        "title": "Prada Shirt",
+        "desc": "This is PARADA Shirt for men, High quality 100% pure cotten is used in this product and this product is hand made by PARADA.this product and this product is hand made by PRADA.",
+        "img":"https://www.prada.com/content/dam/pradanux_products/U/UCS/UCS319/1YOTF010O/UCS319_1YOT_F010O_S_182_SLF.png",
+        "categories":["men","shirt","prada"],
+        "size":["M","s"],
+        "color":["orange"],
+        "price":670
 }
 
 
@@ -89,3 +89,11 @@ Content-Type: application/json
 {
     "title":"Puma Shirt"
 }
+
+
+
+
+### GET ALL PRODUCT 
+
+GET http://localhost:3000/api/products
+

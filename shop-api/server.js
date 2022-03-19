@@ -5,12 +5,15 @@ const userRoute = require('./routes/user')
 const authRoute = require('./routes/auth')
 const bodyParser = require('body-parser')
 const productRoute = require('./routes/product')
+const cors = require("cors");
+
         
 dotenv.config();
 const app= express()
 
 app.use(bodyParser.urlencoded({extended : false}));
 app.use(bodyParser.json())
+app.use(cors());
 
 
 //ROUTES
@@ -23,5 +26,5 @@ mongoos.connect(process.env.DB_URL).then(()=>{ console.log("Database is connecte
 
 
 app.listen(process.env.PORT || 3000,()=>{
-    console.log("Server is running")
-})
+    console.log(`It's alive on Port: ${process.env.PORT || 3000}`)
+}) 
