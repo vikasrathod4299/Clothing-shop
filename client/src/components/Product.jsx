@@ -2,6 +2,7 @@ import styled from "styled-components"
 import { FavoriteBorderOutlined, SearchOutlined, ShoppingCartOutlined } from '@material-ui/icons'
 import {Link} from "react-router-dom"
 
+
 const Info = styled.div`
     opacity:0;
     width:100%;
@@ -66,7 +67,8 @@ const Icon = styled.div`
 `
 
 const Product = ({item}) => {
-  return (
+
+    return (
     <Container>
         <Cricle/>
         <Image src={item.img}/>

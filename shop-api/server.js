@@ -5,6 +5,7 @@ const userRoute = require('./routes/user')
 const authRoute = require('./routes/auth')
 const bodyParser = require('body-parser')
 const productRoute = require('./routes/product')
+const stripeRoute = require("./routes/stripe")
 const cors = require("cors");
 
         
@@ -20,6 +21,7 @@ app.use(cors());
 app.use("/api/users",userRoute)
 app.use("/api/auth",authRoute)
 app.use("/api/products",productRoute)
+app.use("/api/checkout",stripeRoute)
 
 
 mongoos.connect(process.env.DB_URL).then(()=>{ console.log("Database is connected") }).catch((err)=>{ console.log(err) })
