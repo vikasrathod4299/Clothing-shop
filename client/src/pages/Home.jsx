@@ -1,5 +1,3 @@
-
-import React from 'react'
 import Announcement from '../components/Announcement'
 import Categories from '../components/Categories'
 import Footer from '../components/Footer'
@@ -11,10 +9,11 @@ import Slider from '../components/Slider'
 
 
 const Home = () => {
+
   return (
     <div>
         <Announcement/>
-        <Navbar/>
+        <Navbar />
         <Slider/>
         <Categories/>
         <Products/>

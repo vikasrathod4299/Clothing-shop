@@ -1,7 +1,9 @@
 import styled from 'styled-components'
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux"
 import {login} from "../redux/apiCalls"
+
+
 
 const Container = styled.div`
   width: 100vw;
@@ -56,7 +58,7 @@ const Button = styled.button`
   }
 `;
 
-const Link = styled.a`
+const Linkk = styled.a`
   margin: 5px 0px;
   font-size: 12px;
   text-decoration: underline;
@@ -70,14 +72,12 @@ const Error =styled.span`
 const Login = () => {
   const [username,setUsername] = useState("")
   const [password,setPassword] = useState("")
-  const {isFetching, error} = useSelector((state)=>state.user)
-  const dispatch =  useDispatch()
-  const handleClick = (e)=>{
-    e.preventDefault();
-    
-    login(dispatch,{username,password})
+  const dispatch= useDispatch();
 
-  } 
+  const handleClick = (e) => {
+    e.preventDefault();
+    login(dispatch, { username, password });  
+  };
 
   return (
     <Container>
@@ -87,12 +87,12 @@ const Login = () => {
           <Input placeholder="username" onChange={(e)=>setUsername(e.target.value)}/>
           <Input
             placeholder="password" type="password" onChange={(e)=>setPassword(e.target.value)}/>
-          <Button onClick={handleClick} disabled={isFetching}>
+          <Button onClick={handleClick}>
             LOGIN
           </Button>
-          {error && <Error>Somthing went wrong</Error>}
-          <Link>DO NOT YOU REMEMBER THE PASSWORD?</Link>
-          <Link>CREATE A NEW ACCOUNT</Link>
+
+          <Linkk>DO NOT YOU REMEMBER THE PASSWORD?</Linkk>
+          <Linkk>CREATE A NEW ACCOUNT</Linkk>
         </Form>
       </Wrapper>
     </Container>

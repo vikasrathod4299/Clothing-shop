@@ -48,8 +48,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyMjVhY2JiY
 
 ### GET ALL USER (ADMIN) YOU CAN QUERY FOR RECENT 5 USERS BY "?new=true"
 GET http://localhost:3000/api/users/
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyMjVhY2JiYmRiMjgwOGQ2YWFjMTY1NiIsImlzQWRtaW4iOnRydWUsImlhdCI6MTY0NjYzNzI0NiwiZXhwIjoxNjQ2NzIzNjQ2fQ.dMV9X4JCdrt57Din9hXK68p4S1qX0yK9ljxosItPzBM
-
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyMjVhY2JiYmRiMjgwOGQ2YWFjMTY1NiIsImlzQWRtaW4iOnRydWUsImlhdCI6MTY0ODIwNjI2NywiZXhwIjoxNjQ4MjkyNjY3fQ.xgFnOVvt4GgdJGhWWjjD4E9GksXzBPmgVO5VPFmrwAM
 
 
 ### GET USER STATS (ADMIN)
@@ -97,3 +96,21 @@ Content-Type: application/json
 
 GET http://localhost:3000/api/products
 
+
+### user exists in cart
+
+GET http://localhost:3000/api/cart/exists/6225acbbbdb2808d6aac1656
+
+
+### update cart
+
+put http://localhost:3000/api/cart/6225acbbbdb2808d6aac1656
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyMjVhY2JiYmRiMjgwOGQ2YWFjMTY1NiIsImlzQWRtaW4iOnRydWUsImlhdCI6MTY0OTE4Mzk2NiwiZXhwIjoxNjQ5MjcwMzY2fQ.v5m3u-XZBIOc3Ni-TGyA7q9s_B-UeI4cyFRN_ADmtfo
+Content-Type: application/json
+
+{
+    "productId":123123,
+    "color":"red",
+    "size":"M",
+    "quantity":2
+}

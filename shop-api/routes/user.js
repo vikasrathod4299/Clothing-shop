@@ -60,6 +60,7 @@ router.get("/",verifyTokenAdminAuth, async(req,res)=>{
         const user = query ? await User.find().sort({_id:-1}).limit(3) : await User.find();
         // const {password,...others} = user._doc;
         res.status(200).json(user)
+
     }catch(err)
     {
         res.status(500).json(err)

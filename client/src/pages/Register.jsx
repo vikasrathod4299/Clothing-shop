@@ -1,4 +1,6 @@
 import styled  from 'styled-components'
+import { useState } from 'react';
+import { publicRequest } from '../requestMethods';
 
 
 const Container = styled.div`
@@ -53,24 +55,48 @@ const Button = styled.button`
   color: white;
   cursor: pointer;
 `;
+const Error =styled.span`
+  color:green;
+`
 
 const Register = () => {
+  const [username,setUsername] = useState("")
+  const [email,setEmail] = useState("")
+  const [password,setPassword] = useState("")
+
+
+  const handleClick = async (e)=>{
+    e.preventDefault();
+    try{
+      var res = await publicRequest.post("auth/register",{
+          username,
+          email,
+          password,
+      })
+    }catch(err){
+      console.log(err)
+    }
+
+  }
+
   return (
     <Container>
       <Wrapper>
         <Title>CREATE AN ACCOUNT</Title>
+        
         <Form>
-          <Input placeholder="name" />
+          <Input placeholder="First name"  />
           <Input placeholder="last name" />
-          <Input placeholder="username" />
-          <Input placeholder="email" />
-          <Input placeholder="password" />
-          <Input placeholder="confirm password" />
+          <Input placeholder="username" onChange={(e)=>setUsername(e.target.value)}/>
+          <Input placeholder="email" onChange={(e)=>setEmail(e.target.value)}/>
+          <Input placeholder="password" onChange={(e)=>setPassword(e.target.value)}/>
+          <Input placeholder="confirm password"  />
           <Agreement>
             By creating an account, I consent to the processing of my personal
             data in accordance with the <b>PRIVACY POLICY</b>
           </Agreement>
-          <Button>CREATE</Button>
+          <Button onClick={handleClick}>CREATE</Button>
+
         </Form>
       </Wrapper>
     </Container>

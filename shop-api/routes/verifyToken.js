@@ -1,7 +1,7 @@
 const jwt = require('jsonwebtoken')
 
 const verfyToken =  (req,res,next)=>{
-    authHeader = req.headers['authorization'];
+    authHeader = req.headers['token'];
     if(authHeader)
     {
         const token = authHeader.split(' ')[1];
@@ -21,11 +21,13 @@ const verfyToken =  (req,res,next)=>{
 }
 
 const verifyTokenAuthentication = (req,res,next)=>{
+    
     verfyToken(req,res,()=>{
         if(req.user.id==req.params.id || req.user.isAdmin){
             next()
         }
         else{
+            console.log(req.user.id,req.params.id)
             res.status(403).json("you ar not authenticated")
         }
     })

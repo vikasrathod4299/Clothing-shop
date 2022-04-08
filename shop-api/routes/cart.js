@@ -10,24 +10,31 @@ router.post('/', verfyToken, async (req,res)=>{
         const savedCart = await newCart.save();
         res.status(200).json(savedCart) 
     }catch(err){
+        console.log(err)
         res.status(500).json(err)
     }
 })
 
-//UPDATE CART
-router.put("/:id",verifyTokenAuthentication, async(req,res)=>{
+router.get('/exists/:userId', async (req,res)=>{
     try{
-        const updateCart = await Cart.findByIdAndUpdate(
-            req.params.id,
-            {
-            $set:req.body
-            },
-            {new:true}
-            );
-
+        id=req.params.userId
+        const bool = await Cart.find({"userId":id}).count() > 0
+        res.status(200).json(bool)
+    }
+    catch(err){
+        console.log(err)
+        res.status(500).json(err)
+    }
+})
+//UPDATE CART
+router.put("/:userId",verifyTokenAuthentication, async(req,res)=>{
+    try{
+        const updateCart = await Cart.updateOne({userId:req.params.userId},{$push:{products:req.body}});
+        
         res.status(200).json(updateCart)
     }catch(err)
     {
+        console.log(err)
         res.status(500).json(err)
     }
 })
@@ -45,9 +52,10 @@ router.delete("/:id",verifyTokenAuthentication, async(req,res)=>{
 })
 
 //GET USER CART 
-router.get("/find/:userId", async(req,res)=>{
+router.get("/find/:userId",verifyTokenAuthentication, async(req,res)=>{
     try{
         const cart = await Cart.findOne({userId:req.params.userId});
+
         res.status(200).json(cart)
     }catch(err)
     {

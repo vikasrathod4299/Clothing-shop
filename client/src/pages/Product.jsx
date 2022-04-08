@@ -6,9 +6,10 @@ import Navbar from '../components/Navbar'
 import Newslatter from '../components/Newslatter'
 import { useLocation} from "react-router-dom"
 import { useEffect, useState } from "react"
-import {publicRequest} from "../requestMethods";
+import {publicRequest, userRequest} from "../requestMethods";
 import {addProduct} from "../redux/cartRedux"
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
+
 
 const Container = styled.div`
 `
@@ -114,31 +115,51 @@ const Button = styled.button`
 `
 const Product = () => {
     const location = useLocation();
-    const id = location.pathname.split("/")[2];
+    const productId = location.pathname.split("/")[2];
     const [product, setProduct] = useState({});
     const [quantity, setQuantity]= useState(1);
     const [color, setColor]=useState("");
     const [size, setSize]=useState("");
     const dispatch = useDispatch();
-
-
+    const user  = useSelector((state)=>state.user.currentUser);
+    const price = product.price
+    const img = product.img 
+    const products = [{productId,img,color,size,price,quantity}]
+    
+    
     useEffect(()=>{
         const getProduct = async ()=>{
             try{
-                const res= await publicRequest.get("products/find/"+id)
+                const res= await publicRequest.get("products/find/"+productId)
                 setProduct(res.data)
             }catch(e){
                 console.log(e)
             }
         } 
         getProduct()
-    },[id])
+    },[productId])
 
+  
+    const handleClick = async ()=>{
 
-    const handleClick = ()=>{
-        dispatch(addProduct({...product,quantity,color,size}))    
+        if (user.others._id){
+            const userId=user.others._id
+
+            try{
+                const bool = await publicRequest.get("cart/exists/"+userId)
+                if (bool.data){
+                    await userRequest.put("cart/"+userId,{productId,img,color,size,price,quantity})
+                }else{
+                    await userRequest.post("cart/",{userId,products}) 
+                }
+            }
+            catch(err){
+                console.log(err)
+            }
+            dispatch(addProduct({...product,quantity,color,size}))
+        } 
     }
-
+    
     return (
         <Container>
             <Navbar/>
