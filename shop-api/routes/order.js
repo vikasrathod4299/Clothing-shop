@@ -10,6 +10,7 @@ router.post('/', verfyToken, async (req,res)=>{
         const savedOrder = await newOrder.save();
         res.status(200).json(savedOrder) 
     }catch(err){
+
         res.status(500).json(err)
     }
 })
@@ -69,7 +70,7 @@ router.get("/", verifyTokenAdminAuth ,async(req,res)=>{
 
 //GET MONTHELY INCOME
 
-router.get("/income", verifyTokenAndAdmin, async (req, res) => {
+router.get("/income", verifyTokenAdminAuth, async (req, res) => {
     const productId = req.query.pid;
     const date = new Date();
     const lastMonth = new Date(date.setMonth(date.getMonth() - 1));

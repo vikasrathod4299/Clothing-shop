@@ -225,7 +225,7 @@ const Cart = () => {
                     <Remove/>
                   </ProductAmountContainer>
                   <ProductPrice>
-                    $ {product.price*product.quantity}
+                  ₹ {product.price*product.quantity}
                   </ProductPrice>
                 </PriceDetail>
               </Product>
@@ -236,29 +236,30 @@ const Cart = () => {
             <SummaryTitle>ORDER SUMMARY</SummaryTitle>
             <SummaryItem>
               <SummaryItemText>Subtotal</SummaryItemText>
-              <SummaryItemPrice>$ {cart.total}</SummaryItemPrice>
+              <SummaryItemPrice>₹ {cart.total}</SummaryItemPrice>
             </SummaryItem>
             <SummaryItem>
               <SummaryItemText>Estimated Shipping</SummaryItemText>
-              <SummaryItemPrice>$ 5.90</SummaryItemPrice>
+              <SummaryItemPrice>₹ 5.90</SummaryItemPrice>
             </SummaryItem>
             <SummaryItem>
               <SummaryItemText>Shipping Discount</SummaryItemText>
-              <SummaryItemPrice>$ -5.90</SummaryItemPrice>
+              <SummaryItemPrice>₹ -5.90</SummaryItemPrice>
             </SummaryItem>
             <SummaryItem type="total">
               <SummaryItemText>Total</SummaryItemText>
-              <SummaryItemPrice>$ {cart.total}</SummaryItemPrice>
+              <SummaryItemPrice>₹ {cart.total}</SummaryItemPrice>
             </SummaryItem>
  
                 <StripeCheckout
-                  name="Lama Shop"
-                  image="https://avatars.githubusercontent.com/u/1486366?v=4"
+                  name="Meata Shop"
+                  image="https://i.ibb.co/zspsXGb/Meta-Logo-PNG-ndnknvi4.jpg" 
                   billingAddress
                   shippingAddress
-                  description={`Your total is $${cart.total}`}
+                  description={`Your total is ₹${cart.total}`}
                   amount={cart.total * 100}
                   token={onToken}
+                  currency="INR"
                   stripeKey={KEY}>
                   <Button>Check Out</Button>
                 </StripeCheckout>

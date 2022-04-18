@@ -7,6 +7,7 @@ const bodyParser = require('body-parser')
 const productRoute = require('./routes/product')
 const stripeRoute = require("./routes/stripe")
 const cartRoute = require("./routes/cart")
+const OrderRoute = require("./routes/order")
 const cors = require("cors");
 
         
@@ -24,6 +25,8 @@ app.use("/api/auth",authRoute)
 app.use("/api/products",productRoute)
 app.use("/api/checkout",stripeRoute)
 app.use("/api/cart",cartRoute)
+app.use("/api/orders",OrderRoute)
+
 
 
 mongoos.connect(process.env.DB_URL).then(()=>{ console.log("Database is connected") }).catch((err)=>{ console.log(err) })

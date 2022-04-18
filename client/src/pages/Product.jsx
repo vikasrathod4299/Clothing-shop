@@ -173,7 +173,7 @@ const Product = () => {
                     <Desc>
                         {product.desc}
                     </Desc>
-                    <Price>$ {product.price}</Price>
+                    <Price>₹ {product.price}</Price>
                     <FilterContainer>
                     <Filter>
                         <FilterTitle> Colour</FilterTitle>
