@@ -60,20 +60,23 @@ const Error =styled.span`
 `
 
 const Register = () => {
-  const [username,setUsername] = useState("")
-  const [email,setEmail] = useState("")
-  const [password,setPassword] = useState("")
+  const [err, setErr] = useState("");
+  const [inputs, setInputs]  = useState({});
 
+  const handleInputs = (e)=>{
+    setInputs(prev=>{
+      return {...prev,[e.target.name]:e.target.value}
+    })
+  }
 
+  console.log(inputs)
   const handleClick = async (e)=>{
     e.preventDefault();
     try{
-      var res = await publicRequest.post("auth/register",{
-          username,
-          email,
-          password,
-      })
+      var res = await publicRequest.post("auth/register",inputs)
+      setErr(res.data)
     }catch(err){
+      setErr(err)
       console.log(err)
     }
 
@@ -85,19 +88,19 @@ const Register = () => {
         <Title>CREATE AN ACCOUNT</Title>
         
         <Form>
-          <Input placeholder="First name"  />
-          <Input placeholder="last name" />
-          <Input placeholder="username" onChange={(e)=>setUsername(e.target.value)}/>
-          <Input placeholder="email" onChange={(e)=>setEmail(e.target.value)}/>
-          <Input placeholder="password" onChange={(e)=>setPassword(e.target.value)}/>
-          <Input placeholder="confirm password"  />
+          <Input name = "first_name" placeholder="First name"  onChange={handleInputs}/>
+          <Input name = "last_name" placeholder="last name" onChange={handleInputs}/>
+          <Input name = "username" placeholder="username" onChange={handleInputs}/>
+          <Input name = "email" type="email" placeholder="email" onChange={handleInputs}/>
+          <Input name = "mobile" type ="mobile" placeholder="Mobile Number" onChange={handleInputs}/>
+          <Input name = "password" type="password"placeholder="password" onChange={handleInputs}/>
           <Agreement>
             By creating an account, I consent to the processing of my personal
             data in accordance with the <b>PRIVACY POLICY</b>
           </Agreement>
           <Button onClick={handleClick}>CREATE</Button>
-
         </Form>
+        {err.first_name ? <Error>{err.first_name} is registered </Error> : <Error>sonthing went wrong...</Error>}
       </Wrapper>
     </Container>
   );

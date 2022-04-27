@@ -12,13 +12,17 @@ const Success = () => {
   const [orderId, setOrderId] = useState(null);
   
   useEffect(() => {
-    
     const createOrder = async () => {
       try {
-        const res = await userRequest.post("/orders/", {
-          userId: currentUser._id,
+
+        const res = await userRequest.post("/orders", {
+          userId: currentUser.others._id,
           products: cart.products.map((item) => ({
             productId: item._id,
+            img:item.img,
+            color:item.color,
+            size:item.size,
+            price:item.price,
             quantity: item._quantity,
           })),
           amount: cart.total,

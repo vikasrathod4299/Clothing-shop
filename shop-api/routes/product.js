@@ -27,6 +27,7 @@ router.put("/:id",verifyTokenAdminAuth, async(req,res)=>{
             );
 
         res.status(200).json(updateProduct)
+
     }catch(err)
     {
         res.status(500).json(err)
@@ -57,7 +58,7 @@ router.get("/find/:id", async(req,res)=>{
 })
 
 
-//GET ALL PRODUCTS (ADMIN)
+//GET ALL PRODUCTS 
 router.get("/", async(req,res)=>{
     const Qnew = req.query.new
     const Qcategory = req.query.category

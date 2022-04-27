@@ -9,16 +9,16 @@ const verfyToken =  (req,res,next)=>{
         jwt.verify(token,process.env.jwtToken,(err,user)=>{
             if(err){
                 res.status(403).json("Token is not valid!")
-            }else{
-                console.log(user)
-            req.userId={userId:user.id};
-            next()
+            }
+            else
+            { 
+                req.user=user;
+                next()
             }
         })
     }
     else
     {
-        
         res.status(401).json("You are not authenticated")
     }
 }
@@ -30,7 +30,7 @@ const verifyTokenAuthentication = (req,res,next)=>{
             next()
         }
         else{
-            console.log(req.user.id,req.params.id)
+
             res.status(403).json("you ar not authenticated")
         }
     })

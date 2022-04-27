@@ -7,18 +7,14 @@ const jwt = require('jsonwebtoken')
 
 //REGISTER
 router.post('/register',async(req,res)=>{
-
     try{
         const hashedPass = await bcrypt.hash(req.body.password,10)
-        const newUser = new User({
-            username:req.body.username,
-            email:req.body.email,
-            password:hashedPass,
-        })
+        const newUser = new User({...req.body,hashedPass})
         const savedUser= await newUser.save();
         res.status(201).json(savedUser)
     }catch(err){
-        res.status(500).json(err)
+        console.log(err)
+        res.status(500).json("This is user is all ready exist")
     }
 
 })

@@ -10,7 +10,7 @@ router.post('/', verfyToken, async (req,res)=>{
         const savedOrder = await newOrder.save();
         res.status(200).json(savedOrder) 
     }catch(err){
-
+      console.log(err)
         res.status(500).json(err)
     }
 })
@@ -71,38 +71,38 @@ router.get("/", verifyTokenAdminAuth ,async(req,res)=>{
 //GET MONTHELY INCOME
 
 router.get("/income", verifyTokenAdminAuth, async (req, res) => {
-    const productId = req.query.pid;
-    const date = new Date();
-    const lastMonth = new Date(date.setMonth(date.getMonth() - 1));
-    const previousMonth = new Date(new Date().setMonth(lastMonth.getMonth() - 1));
-  
-    try {
-      const income = await Order.aggregate([
-        {
-          $match: {
-            createdAt: { $gte: previousMonth },
-            ...(productId && {
-              products: { $elemMatch: { productId } },
-            }),
-          },
+  const productId = req.query.pid;
+  const date = new Date();
+  const lastMonth = new Date(date.setMonth(date.getMonth() - 1));
+  const previousMonth = new Date(new Date().setMonth(lastMonth.getMonth() - 1));
+
+  try {
+    const income = await Order.aggregate([
+      {
+        $match: {
+          createdAt: { $gte: previousMonth },
+          ...(productId && {
+            products: { $elemMatch: { productId } },
+          }),
         },
-        {
-          $project: {
-            month: { $month: "$createdAt" },
-            sales: "$amount",
-          },
+      },
+      {
+        $project: {
+          month: { $month: "$createdAt" },
+          sales: "$amount",
         },
-        {
-          $group: {
-            _id: "$month",
-            total: { $sum: "$sales" },
-          },
+      },
+      {
+        $group: {
+          _id: "$month",
+          total: { $sum: "$sales" },
         },
-      ]);
-      res.status(200).json(income);
-    } catch (err) {
-      res.status(500).json(err);
-    }
-  });
+      },
+    ]);
+    res.status(200).json(income);
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
 
 module.exports = router;
