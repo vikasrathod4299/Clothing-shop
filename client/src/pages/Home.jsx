@@ -9,7 +9,7 @@ import Slider from '../components/Slider'
 
 
 const Home = () => {
-
+  console.log(process.env)
   return (
     <div>
         <Announcement/>

@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const BASE_URL = "http://localhost:3000/api/";
+const BASE_URL = process.env.NODE_ENV==='development' ? "http://localhost:3000/api/" : 'https://shop-api-rw89.onrender.com/api/';
 // const TOKEN =
 //   JSON.parse(JSON.parse(localStorage.getItem("persist:root")).user).currentUser
 //     .accessToken || "";
