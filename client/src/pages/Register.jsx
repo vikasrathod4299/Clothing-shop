@@ -69,7 +69,6 @@ const Register = () => {
     })
   }
 
-  console.log(inputs)
   const handleClick = async (e)=>{
     e.preventDefault();
     try{
@@ -100,7 +99,7 @@ const Register = () => {
           </Agreement>
           <Button onClick={handleClick}>CREATE</Button>
         </Form>
-        {err.first_name ? <Error>{err.first_name} is registered </Error> : <Error>sonthing went wrong...</Error>}
+        {err.first_name ? <Error>{err.first_name} is registered </Error> : <Error>{err}</Error>}
       </Wrapper>
     </Container>
   );

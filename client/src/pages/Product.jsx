@@ -126,12 +126,15 @@ const Product = () => {
     const img = product.img 
     const products = [{productId,img,color,size,price,quantity}]
     
+ 
     
     useEffect(()=>{
         const getProduct = async ()=>{
             try{
                 const res= await publicRequest.get("products/find/"+productId)
+                console.log(res)
                 setProduct(res.data)
+                console.log(res)
             }catch(e){
                 console.log(e)
             }

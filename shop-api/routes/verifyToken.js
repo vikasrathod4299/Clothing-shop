@@ -8,6 +8,7 @@ const verfyToken =  (req,res,next)=>{
         const token = authHeader.split(' ')[1];
         jwt.verify(token,process.env.jwtToken,(err,user)=>{
             if(err){
+                console.log("up")
                 res.status(403).json("Token is not valid!")
             }
             else
@@ -24,13 +25,14 @@ const verfyToken =  (req,res,next)=>{
 }
 
 const verifyTokenAuthentication = (req,res,next)=>{
-    
+    const id = req.params
     verfyToken(req,res,()=>{
-        if(req.user.id==req.params.userId || req.user.isAdmin){
+        if(req.user.id == id.id || req.user.isAdmin){
+            console.log("next")
             next()
         }
         else{
-
+            console.log("here")
             res.status(403).json("you ar not authenticated")
         }
     })

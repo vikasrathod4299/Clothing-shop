@@ -6,25 +6,24 @@ const {verfyToken,verifyTokenAuthentication, verifyTokenAdminAuth} = require("./
 
 //UPDATE USER 
 router.put("/:id",verifyTokenAuthentication, async(req,res)=>{
-    try{
-        
-        if (req.body.password){
-            req.body.password = await bcrypt.hash(req.body.password,10)
-        }
+    
+        try {
 
-        const updateUser = await User.findByIdAndUpdate(
-            req.params.id,
-            {
-            $set:req.body
-            },
-            {new:true}
+            if (req.body.password){
+                req.body.password = await bcrypt.hash(req.body.password,10)
+            }
+            var updatedUser = await User.findByIdAndUpdate(
+              req.params.id,
+              {
+                $set: req.body,
+              },
+              { new: true }
             );
-
-        res.status(200).json(updateUser)
-    }catch(err)
-    {
-        res.status(500).json(err)
-    }
+            console.log("done")
+            res.status(200).json(updatedUser);
+          } catch (err) {
+            res.status(500).json(err);
+          }
 })
 
 

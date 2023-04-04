@@ -2,6 +2,10 @@ import styled from "styled-components"
 import { FavoriteBorderOutlined, SearchOutlined, ShoppingCartOutlined } from '@material-ui/icons'
 import {Link} from "react-router-dom"
 
+import {publicRequest, userRequest} from "../requestMethods";
+import {addProduct} from "../redux/cartRedux"
+import {useDispatch, useSelector} from "react-redux";
+
 
 const Info = styled.div`
     opacity:0;
@@ -67,17 +71,44 @@ const Icon = styled.div`
 `
 
 const Product = ({item}) => {
+    const user  = useSelector((state)=>state.user.currentUser);
+    const productId = item._id
+    const img = item.img
+    const price = item.price
+    const quantity = 1;
+    const dispatch = useDispatch();
+
+    
+    const handleClick = async ()=>{
+        if (user.others._id){
+            const userId=user.others._id
+            try{
+                const bool = await publicRequest.get("cart/exists/"+userId)
+                if (bool.data){
+                    await userRequest.put("cart/"+userId,{productId,img,price,quantity})
+                }else{
+                    await userRequest.post("cart/",{userId,item}) 
+                }
+            }
+            catch(err){
+                console.log(err)
+            }
+            dispatch(addProduct({...item}))
+        } 
+    }
+
+
 
     return (
     <Container>
         <Cricle/>
         <Image src={item.img}/>
         <Info>
-            <Icon>
+            <Icon onClick={handleClick}>
                 <ShoppingCartOutlined/>
             </Icon>
             <Icon>
-                <Link to ={`/product/${item._id}`}>
+                <Link to ={`/product/${productId}`}>
                     <SearchOutlined/>
                 </Link>
             </Icon>

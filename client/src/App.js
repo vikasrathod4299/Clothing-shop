@@ -6,11 +6,14 @@ import ProductList from './pages/ProductList'
 import Product from './pages/Product'
 import Register from './pages/Register'
 import Success from './pages/Success'
+import Orders from './pages/orders/orders'
+import OrderProducts from './pages/orderProducts'
 import {useSelector, useDispatch} from "react-redux";
 import {BrowserRouter as Router, Switch, Route, Redirect} from "react-router-dom"
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import {addProduct} from "./redux/cartRedux"
 import {userRequest} from "./requestMethods"
+import Account from './pages/Account'
 
 const App = () => {
   const dispatch = useDispatch();
@@ -56,6 +59,15 @@ return (
       </Route>
       <Route path="/success">
         <Success />
+      </Route>
+      <Route path="/orders">
+        <Orders />
+      </Route>
+      <Route path="/account">
+        <Account />
+      </Route>
+      <Route path="/viewproducts">
+        <OrderProducts />
       </Route>
       <Route path="/login">{user ? <Redirect to="/" /> : <Login />}</Route>
       <Route path="/register">

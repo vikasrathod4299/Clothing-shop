@@ -9,7 +9,14 @@ const jwt = require('jsonwebtoken')
 router.post('/register',async(req,res)=>{
     try{
         const hashedPass = await bcrypt.hash(req.body.password,10)
-        const newUser = new User({...req.body,hashedPass})
+        console.log(hashedPass)
+        const newUser = new User({
+            username:req.body.username,
+            first_name:req.body.first_name,
+            last_name:req.body.last_name,
+            mobile:req.body.mobile,
+            email:req.body.email,
+            password:hashedPass})
         const savedUser= await newUser.save();
         res.status(201).json(savedUser)
     }catch(err){

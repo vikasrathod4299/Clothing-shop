@@ -1,4 +1,4 @@
-import { Search, ShoppingCartOutlined } from '@material-ui/icons'
+import { Search, ShoppingCartOutlined, AccountCircleTwoTone, ExitToAppRounded, HomeRounded  } from '@material-ui/icons'
 import Badge from '@mui/material/Badge';
 import styled from 'styled-components'
 import { useDispatch, useSelector } from "react-redux"
@@ -25,7 +25,7 @@ const Left =styled.div`
     flex:1;
     display:flex;
     align-items : center;
-
+    gap:10px
 `
 const Language = styled.span`
     font-size:14px;
@@ -72,15 +72,23 @@ const Navbar = () => {
     const quantity = useSelector(state=>state.cart.quantity)
     const user = useSelector((state) => state.user.currentUser);
     const dispatch = useDispatch();
-
+    
     const handleClick = () =>{
         dispatch(removeProduct())
         dispatch(logout())
     }
+
+    const handleHomeButton =()=>{
+        
+    }
+
     return (
     <Container>
         <Wrapper>
             <Left>
+                <Link  to={'/'}>
+                    <HomeRounded onClick={handleHomeButton}/>
+                </Link>
                 <Language>EN</Language>
                 <SearchContainer>
                     <Input/>
@@ -91,7 +99,12 @@ const Navbar = () => {
                 <Logo>META.</Logo>
             </Center>
             <Right>
-             {user && <Link to="/"> <MenuItems onClick={handleClick}>Logout</MenuItems>  </Link>}   
+             {user && <Link to="/"> 
+                        <MenuItems onClick={handleClick}>
+                        Logout<ExitToAppRounded /> 
+                        </MenuItems>  
+                      </Link>}
+             {user && <Link to="/account"> <MenuItems ><AccountCircleTwoTone/></MenuItems> </Link>}   
              {!user &&<Link to="/register"> <MenuItems>REGISTER</MenuItems> </Link>}
             {!user && <Link to="/login"> <MenuItems>SIGN IN</MenuItems>  </Link>}
                 <Link to="/cart">

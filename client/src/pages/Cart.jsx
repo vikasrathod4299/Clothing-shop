@@ -2,12 +2,13 @@ import styled from "styled-components"
 import Navbar from "../components/Navbar"
 import Announcement from "../components/Announcement"
 import Footer from "../components/Footer"
-import { Add, Remove } from "@material-ui/icons";
-import {useSelector} from "react-redux"
+import { Add, CloseSharp, Remove } from "@material-ui/icons";
+import {useSelector, useDispatch} from "react-redux"
 import StripeCheckout from "react-stripe-checkout";
 import { useEffect, useState } from "react";
 import { userRequest} from "../requestMethods"
-import { useHistory } from "react-router-dom";
+import { useHistory, Link } from "react-router-dom";
+import { deletesSingleProduct,increaseProductQuantity, decreaseProductQuantity} from "../redux/cartRedux"
 
 const KEY = process.env.REACT_APP_STRIPE;
 
@@ -15,7 +16,6 @@ const Container = styled.div``;
 
 const Wrapper = styled.div`
   padding: 20px;
-
 `;
 
 const Title = styled.h1`
@@ -68,6 +68,7 @@ const Product = styled.div`
 const ProductDetail = styled.div`
   flex: 2;
   display: flex;
+  align-items:justify-between;
 `;
 
 const Image = styled.img`
@@ -99,11 +100,12 @@ const PriceDetail = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
 `;
 
 const ProductAmountContainer = styled.div`
   display: flex;
+
   align-items: center;
   margin-bottom: 20px;
 `;
@@ -159,11 +161,19 @@ const Button = styled.button`
   cursor: pointer;
 `;
 
+const DeleteProduct = styled.div`
+  display:flex;
+  cursor: pointer;
+  
+`;
 
 const Cart = () => {
   const cart  = useSelector(state=>state.cart);
   const [stripeToken,setStripeToken] = useState(null)
-  const history = useHistory();
+  const history = useHistory();   
+  const dispatch = useDispatch()
+
+  
   const onToken = (token)=>{
     setStripeToken(token)
   }
@@ -185,6 +195,9 @@ const Cart = () => {
     stripeToken && makeRequest();
   }, [stripeToken, cart.total, history]);
 
+
+
+
   return (
     <Container>
         <Navbar/>
@@ -192,12 +205,16 @@ const Cart = () => {
         <Wrapper>
         <Title>YOUR BAG</Title>
         <Top>
+          <Link to="/">
           <TopButton>CONTINUE SHOPPING</TopButton>
+          </Link>
           <TopTexts>
             <TopText>Shopping Bag(2)</TopText>
             <TopText>Your Wishlist (0)</TopText>
           </TopTexts>
-          <TopButton type="filled">CHECKOUT NOW</TopButton>
+          <Link to="/orders">
+          <TopButton type="filled">YOUR ORDERS</TopButton>
+          </Link>
         </Top>
         <Bottom>
             <Info>
@@ -219,14 +236,19 @@ const Cart = () => {
                   </Details>
                 </ProductDetail>
                 <PriceDetail>
-                  <ProductAmountContainer>
-                    <Add/>
-                    <ProductAmount>{product.quantity}</ProductAmount>
-                    <Remove/>
-                  </ProductAmountContainer>
-                  <ProductPrice>
-                  ₹ {product.price*product.quantity}
-                  </ProductPrice>
+                <DeleteProduct onClick={()=>dispatch(deletesSingleProduct(product._id))}>
+                  <CloseSharp />
+                </DeleteProduct>
+                <div style={{display:'flex', flexDirection:'column'}}>
+                    <ProductAmountContainer>
+                      <Add onClick={()=>dispatch(increaseProductQuantity(product._id))}/>
+                      <ProductAmount>{product.quantity}</ProductAmount>
+                      <Remove onClick={()=>dispatch(decreaseProductQuantity(product._id))} />
+                    </ProductAmountContainer>
+                    <ProductPrice>
+                    ₹ {product.price*product.quantity}
+                    </ProductPrice>
+                </div>
                 </PriceDetail>
               </Product>
               ))};

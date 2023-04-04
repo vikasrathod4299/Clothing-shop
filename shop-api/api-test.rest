@@ -3,8 +3,11 @@ Content-Type: application/json
 
 
 {
-    "username":"suhag",
-    "email":"suhag@gmail.com",
+    "username":"rampatel",
+    "first_name":"ram",
+    "last_name":"patel",
+    "mobile":"4564631166",
+    "email":"ram@gmail.com",
     "password":"1234"
 }
 
@@ -15,15 +18,15 @@ Content-Type: application/json
 
 
 {
-    "username":"vikasrathod",
+    "username":"avanirathod",
     "password":"1234"
 }
 
 
 ### UPDATE USER
 
-PUT http://localhost:3000/api/users/6225acbbbdb2808d6aac1656
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyMjVhY2JiYmRiMjgwOGQ2YWFjMTY1NiIsImlzQWRtaW4iOmZhbHNlLCJpYXQiOjE2NDY2MzY4ODksImV4cCI6MTY0NjYzNjk0OX0.KMpGabECrcO28ifmP4osvlkdLPEwfnuyiHDDrSdylGo
+PUT http://localhost:3000/api/users/626c029e43966f180d96e56e
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyNmMwMjllNDM5NjZmMTgwZDk2ZTU2ZSIsImlzQWRtaW4iOmZhbHNlLCJpYXQiOjE2NTEyNTQ0OTYsImV4cCI6MTY1MTM0MDg5Nn0.UElur_Zj4EwmgQSY4Cd-117Vzk5zBS1hmco3Nl7aG2c
 Content-Type: application/json
 
 
